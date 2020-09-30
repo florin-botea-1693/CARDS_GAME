@@ -1,4 +1,5 @@
 import Player from "./Player";
+import IRoom from "../../shared/IRoom";
 
 export default class Room 
 {
