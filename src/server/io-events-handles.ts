@@ -52,11 +52,13 @@ module.exports = function(io:SocketIO.Server)
 
         socket.on("card/play", function({cardId}) 
         {
+        	// lock user.playCard for concurency pushing
             let card = user.asPlayer().cards.find(card => card.getId() == cardId);
             if (!card) throw new Error("User played a card, but card not found -> card.id:" + JSON.stringify({cardId}));
             console.log("playing card " + JSON.stringify(card.toJson()));
             let action = new CardPlay(card);
-            socket.emit("room/eventsQueue", action.animations);
+            socket.emit("room/eventsQueue", action.toClientActions()); 
+            // unlock user
         });
     });
 
