@@ -9,14 +9,14 @@ namespace IModifier
         source: Card;
         triggeredBy: IModifier.TriggerBy;
         triggeredOn: IModifier.TriggerOn;
-        moment: IModifier.TriggerMoment;
+        triggerMoment: IModifier.TriggerMoment;
         perform: IModifier.PerformModifier;
         executionIndex: number;
     }
 
     export interface PerformModifier
     {
-        (triggererCard: Card): void;
+        (triggererCard: Card): Array<IClientAction>;
     }
 
     export enum TriggerBy
