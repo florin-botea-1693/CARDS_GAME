@@ -4,6 +4,7 @@ import Room from "./app/Room";
 import Player from "./app/Player";
 import Card from "./app/Card";
 import CardPlay from "./app/actions/CardPlay";
+import CardAction from "./app/actions/CardAction";
 
 module.exports = function(io:SocketIO.Server)
 {
@@ -56,8 +57,8 @@ module.exports = function(io:SocketIO.Server)
             let card = user.asPlayer().cards.find(card => card.getId() == cardId);
             if (!card) throw new Error("User played a card, but card not found -> card.id:" + JSON.stringify({cardId}));
             console.log("playing card " + JSON.stringify(card.toJson()));
-            let action = new CardPlay(card);
-            socket.emit("room/eventsQueue", action.toClientActions()); 
+            let action:CardAction = new CardPlay(card);
+            socket.emit("room/eventsQueue", action.getClientActions()); 
             // unlock user
         });
     });

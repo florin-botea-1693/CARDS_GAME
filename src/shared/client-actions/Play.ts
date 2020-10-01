@@ -1,4 +1,7 @@
-export default namespace ClientAction;
+import IClientAction from "../IClientAction";
+import Card from "../../server/app/Card";
+
+export default ClientAction;
 
 namespace ClientAction
 {
@@ -6,7 +9,11 @@ namespace ClientAction
 	{
 		public static normal(card:Card): Array<IClientAction>
 		{
+            return [
+                {
 
+                }
+            ];
 		}
 	}
 }

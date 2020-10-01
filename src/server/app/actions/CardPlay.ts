@@ -1,24 +1,19 @@
 import Card from "../Card";
+import CardAction from "./CardAction";
+import IClientAction from "../../../shared/IClientAction";
+import ICard from "../../../shared/ICard";
 
-export default class CardPlay
+export default class CardPlay extends CardAction
 {
-	private clientActions: Array<IClientAction> = [];
-	
     private card: Card;
-    private partyCards: Array<Card>;
-    private enemyCards: Array<Card>;
-    // vor fi sortati dupa indexExecutie
-    private partyModifiersBefore: Array<IModifier.Modifier>;
-    private partyModifiersAfter: Array<IModifier.Modifier>;
-    private enemyModifiersBefore: Array<IModifier.Modifier>;
-    private enemyModifiersAfter: Array<IModifier.Modifier>;
 
 	// !!!! nu e nevoie/ar fi limitativ sa impart modifiers executia lor in functie de party... las pe index !!!
 	// extrag metodele de mai jos (before play, after play, evaluate) intr-un parent class
-    constructor(card:Card) {
+    constructor(card:Card) 
+    {
+        super();
         this.card = card;
-
-
+        
     }
 
     private play(): Array<IClientAction>
@@ -40,6 +35,6 @@ export default class CardPlay
             throw new Error("Card is not playable");
         }
         card.setLocation("onTable");
-        this.clientActions.concat(ClientAction.Play.normal(card));
+        //this.clientActions.concat(ClientAction.Play.normal(card));
     }
 }

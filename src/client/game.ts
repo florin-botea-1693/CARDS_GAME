@@ -2,10 +2,10 @@ import * as Phaser from 'phaser';
 
 // import PhaserGame from "./phaser.game.ts";
 import io from 'socket.io-client';
-import CardTestScene from './../tests/CardTestScene';
+import CardTestScene from './tests/CardTestScene';
 import GameTableScene from "./scenes/GameTableScene";
 import EventsDispatcher from './EventsDispatcher';
-import GameTableTestScene from '../tests/GameTableTestScene';
+import GameTableTestScene from './tests/GameTableTestScene';
 var cookie = require("cookie");
 
 declare global {

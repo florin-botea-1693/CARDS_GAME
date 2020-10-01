@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     mode: "development", // "production" | "development" | "none"
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
-    entry: "./src/game.ts", // string | object | array
+    entry: "./src/client/game.ts", // string | object | array
     // defaults to ./src
     // Here the application starts executing
     // and webpack starts bundling

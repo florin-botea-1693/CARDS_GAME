@@ -1,5 +1,5 @@
-import ICardData from "./ICardData";
 import Player from "./Player";
+import ICard from "../../shared/ICard";
 var cookie = require("cookie");
 /**
  * User devine player atunci cand intra intr-o camera

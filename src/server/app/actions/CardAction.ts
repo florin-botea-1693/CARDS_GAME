@@ -1,19 +1,38 @@
+import Card from "../Card";
+import CardActionMembers from "./CardActionMembers";
+import IModifier from "../../../shared/IModifier";
+import IClientAction from "../../../shared/IClientAction";
+import ClientAction from "../../../shared/client-actions/CardState";
+
 export default abstract class CardAction
 {
-	private actionMembers: CardActionMembers; // src - target
-	// va merge si in caz de atac, pt ca sunt doar modifiers... si pot fi setati in ctrctor
-	protected after(): void
+    protected clientActions: Array<IClientAction> = [];
+    protected actionMembers: CardActionMembers;
+    
+    protected partyCards: Array<Card>;
+    protected enemyCards: Array<Card>;
+    // vor fi sortati dupa indexExecutie
+    protected partyModifiersBefore: Array<IModifier.Modifier>;
+    protected partyModifiersAfter: Array<IModifier.Modifier>;
+    protected enemyModifiersBefore: Array<IModifier.Modifier>;
+    protected enemyModifiersAfter: Array<IModifier.Modifier>;
+
+    public getClientActions() {
+        return this.clientActions;
+    }
+    
+    protected before(): void
 	{
-		let sortedModifiers = this.partyModifiersAfter.concat(this.enemyModifiersAfter).sort(m => m.index);
-        let actions = sortedModifiers.map(m => m.perform(this.actionMembers));
-        this.clientActions = this.clientActions.concat(actions.flat(Infinity));
-	}
-	
-	protected before(): void
-	{
-		let sortedModifiers = this.partyModifiersBefore.concat(this.enemyModifiersBefore).sort(m => m.index);
+		let sortedModifiers = this.partyModifiersBefore.concat(this.enemyModifiersBefore).sort(m => m.executionIndex);
         let actions = sortedModifiers.map(m => m.perform(this.actionMembers));
         this.clientActions = actions.flat(Infinity);
+	}
+
+    protected after(): void
+	{
+		let sortedModifiers = this.partyModifiersAfter.concat(this.enemyModifiersAfter).sort(m => m.executionIndex);
+        let actions = sortedModifiers.map(m => m.perform(this.actionMembers));
+        this.clientActions = this.clientActions.concat(actions.flat(Infinity));
 	}
 	
 	protected evalStates(): void

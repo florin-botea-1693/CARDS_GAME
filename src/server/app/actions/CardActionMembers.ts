@@ -1,3 +1,5 @@
+import Card from "../Card";
+
 export default class CardActionMembers
 {
 	private _actionHolder: Card;
@@ -5,9 +7,18 @@ export default class CardActionMembers
 
 	get actionHolder() {
 		return this._actionHolder;
-	}
-	
-	constructor(holder:Card, receiver:Card) {
-		// set
-	}
+    }
+    get actionReceiver() {
+        return this._actionReceiver;
+    }
+    
+    public setActionReceiver(card:Card) {
+        this._actionReceiver = card;
+    }
+
+    constructor(holder:Card, receiver:Card) 
+    {
+        this._actionHolder = holder;
+        this._actionReceiver = receiver;
+    }
 }

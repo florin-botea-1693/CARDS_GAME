@@ -1,4 +1,6 @@
 import Card from "../server/app/Card";
+import IClientAction from "./IClientAction";
+import CardActionMembers from "../server/app/actions/CardActionMembers";
 
 export default IModifier;
 
@@ -16,7 +18,7 @@ namespace IModifier
 
     export interface PerformModifier
     {
-        (triggererCard: Card): Array<IClientAction>;
+        (members:CardActionMembers): Array<IClientAction>;
     }
 
     export enum TriggerBy

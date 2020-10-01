@@ -44,10 +44,10 @@ app.use(cookieParser());
 app.use(checkOrSetCookie);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.engine('html', HTMLing.express(__dirname + '/views/', {watch: true}));
+app.engine('html', HTMLing.express(__dirname + '/views', {watch: true}));
 app.set('view engine', 'html');
 
-app.use(express.static('../client'));
+app.use(express.static('../../'));
 
 app.get('/', (req: any, res: any) => {
     res.render("index", {data: {idCookie:req.cookies.cookieName}});

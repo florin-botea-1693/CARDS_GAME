@@ -84,7 +84,7 @@ export default class Room
             throw new Error("The game can not be ready because the room is not full");
         }
         console.log(`The room with id ${this.id} is ready to start.`);
-        global.io.of('/dev').in(this.id).emit("room/roomData", this.getData());
+        (global.io as any).of('/dev').in(this.id).emit("room/roomData", this.getData());
     }
 
     public gameStarted(): boolean 
