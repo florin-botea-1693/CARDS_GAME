@@ -35,6 +35,8 @@ export default class CardPlay extends CardAction
             throw new Error("Card is not playable");
         }
         card.setLocation("onTable");
-        //this.clientActions.concat(ClientAction.Play.normal(card));
+        this.clientActions.concat(
+			new ClientAction(ca.type.normal, card, card, card, card);
+		);
     }
 }

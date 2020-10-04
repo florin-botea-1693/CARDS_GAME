@@ -10,9 +10,7 @@ namespace ClientAction
 		public static normal(card:Card): Array<IClientAction>
 		{
             return [
-                {
-
-                }
+            	new ClientAction(ClientAction.Type.NORMAL_PLAY, card, card, card, card);
             ];
 		}
 	}
