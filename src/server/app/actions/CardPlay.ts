@@ -2,6 +2,7 @@ import Card from "../Card";
 import CardAction from "./CardAction";
 import IClientAction from "../../../shared/IClientAction";
 import ICard from "../../../shared/ICard";
+import { ClientAction } from "../../../shared/client-actions/ClientAction";
 
 export default class CardPlay extends CardAction
 {
@@ -35,8 +36,8 @@ export default class CardPlay extends CardAction
             throw new Error("Card is not playable");
         }
         card.setLocation("onTable");
-        this.clientActions.concat(
-			new ClientAction(ca.type.normal, card, card, card, card);
-		);
+        this.clientActions.concat(new ClientAction(ClientAction.Type.CARD_PLAYED, {
+            actionHolder: card
+        }));
     }
 }
